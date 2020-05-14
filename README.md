@@ -2,7 +2,7 @@
 
 This is a [Mozilla Open Labs project](https://builders.mozilla.community/springlab/index.html).
 
-The idea of Cryptographic Orthogonal Access Control is for individuals to control who can access their data without shared secrets or storing secrets (e.g., private keys) on a centralized service. Applications like Dropbox and Google Drive have shown that centralized repositories and permission management systems could dramatically improve the user experience for file sharing. Yet, storing plain text documents and/or encryption keys on those centralized services have profound privacy implications.
+[Cryptographic Orthogonal Access Control](https://dl.acm.org/doi/10.1145/3201595.3201602) is an Internet-scale approach for individuals to control who can access their data *without* shared secrets or storing secrets (e.g., private keys) on a centralized service. Applications like Dropbox and Google Drive have shown that centralized repositories and permission management systems could dramatically improve the user experience for file sharing. Yet, storing plain text documents and/or encryption keys on those centralized services have profound privacy implications.
 
 For example, in the age of COVID-19, there is great need for people to share their medical records remotely. Cryptographic Orthogonal Access Control empowers people to share with confidence that their privacy will be protected. While there are central services and repositories to faciliate sharing, it is mathematically impossible for those services to violate your privacy. As a user, you alone decides who and when sees your data.
 
@@ -74,7 +74,7 @@ $ curl -d "[5,251,27,236,155,82,189,136,54,48,225,95,30,66,96,94,121,155,63,6,20
 83177a48b4c97ed4b0d8f0fd0f34f549b4d2987582d59397e67294566c481ad2
 ```
 
-Now Bob received Alice's AES key and decrypt her documents. Now Alice can creates more documents and more AES keys. She shares the key UUID to everyone she `grant_access` to and they will all be able to retrieve the key themselves. If Alice does not `grant_access` to Charlie, the above `get_sym_key` operaton from Charlie's UUID and private key will fail. 
+Now Bob received Alice's AES key and decrypt her documents. Now Alice can creates more documents and more AES keys. She shares the key UUID to everyone she `grant_access` to and they will all be able to retrieve the key themselves. If Alice does not `grant_access` to Charlie, the above `get_sym_key` operaton with Charlie's UUID and private key will fail. 
 
 Finally, Alice can revoke access for Bob. She does so by posting the `signature` from `grant_access` to a `revoke_access` call.
 
@@ -94,7 +94,9 @@ $ curl -d "[5,251,27,236,155,82,189,136,54,48,225,95,30,66,96,94,121,155,63,6,20
 [Error]
 ```
 
-## Running the service
+## Building and running the service
+
+Our service incorporates [Ironcore Labs'](https://ironcorelabs.com/) Rust-based proxy re-encryption library [Recrypt.rs](https://docs.rs/recrypt/0.11.1/recrypt/).
 
 ### Prerequisite
 
