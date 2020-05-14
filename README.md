@@ -1,5 +1,7 @@
 # Use Recrypt-as-a-Service for Cryptographic Orthogonal Access Control
 
+This is a [Mozilla Open Labs project](https://builders.mozilla.community/springlab/index.html).
+
 The idea of Cryptographic Orthogonal Access Control is for individuals to control who can access their data without shared secrets or storing secrets (e.g., private keys) on a centralized service. Applications like Dropbox and Google Drive have shown that centralized repositories and permission management systems could dramatically improve the user experience for file sharing. Yet, storing plain text documents and/or encryption keys on those centralized services have profound privacy implications.
 
 For example, in the age of COVID-19, there is great need for people to share their medical records remotely. Cryptographic Orthogonal Access Control empowers people to share with confidence that their privacy will be protected. While there are central services and repositories to faciliate sharing, it is mathematically impossible for those services to violate your privacy. As a user, you alone decides who and when sees your data.
