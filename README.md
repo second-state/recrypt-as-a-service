@@ -1,5 +1,11 @@
 # Use Recrypt-as-a-Service for Cryptographic Orthogonal Access Control
 
+<p>
+    <a href="https://online.visualstudio.com/environments/new?name=Recrypt%20as%20a%20Service&repo=second-state/recrypt-as-a-service">
+        <img src="https://img.shields.io/endpoint?style=social&url=https%3A%2F%2Faka.ms%2Fvso-badge">
+    </a>
+</p>
+
 This is a [Mozilla Open Labs project](https://builders.mozilla.community/springlab/index.html).
 
 [Cryptographic Orthogonal Access Control](https://dl.acm.org/doi/10.1145/3201595.3201602) is a scalable approach for individuals to control who can access their data *without* shared secrets or storing secrets (e.g., private keys) on a centralized service. Applications like Dropbox and Google Drive have shown that centralized repositories and permission management systems could dramatically improve the user experience for file sharing. Yet, storing plain text documents and/or encryption keys on those centralized services have profound privacy implications.
