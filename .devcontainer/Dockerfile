@@ -45,7 +45,8 @@ RUN apt-get update \
     # Install ssvmup
     #
     && apt-get install -y build-essential curl wget git vim libboost-all-dev \
-    && npm install -g wasm-pack --unsafe-perm \
+    && npm install -g ssvmup --unsafe-perm \
+    && npm install ssvm \
     && npm install uuid \
     && npm install express \
     #
