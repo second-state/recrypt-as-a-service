@@ -1,7 +1,6 @@
 use recrypt::prelude::*;
 use recrypt::api::*;
 use wasm_bindgen::prelude::*;
-// use nodejs_helper;
 use serde::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -88,7 +87,6 @@ pub fn get_symmetric_key (pt: &[u8]) -> Vec<u8> {
 // Return: SSEncryptedValue
 #[wasm_bindgen]
 pub fn encrypt (ps: &str) -> String {
-    // nodejs_helper::console::log(ps);
     let params: (Vec<u8>, Vec<u8>, Vec<u8>, Vec<u8>) = serde_json::from_str(ps).unwrap();
     let plain_text: Plaintext = Plaintext::new_from_slice(&params.0).unwrap();
     let public_key: PublicKey = PublicKey::new_from_slice((&params.1, &params.2)).unwrap();

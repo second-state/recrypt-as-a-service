@@ -32,7 +32,7 @@ app.get('/create_sym_key/:peopleId', function (req, res) {
   var sk = get_symmetric_key(Uint8Array.from(plain_text));
 
   var args = [plain_text, identity['public_key_x'], identity['public_key_y'], identity['signing_key_pair']];
-  var ev = JSON.parse( encrypt(JSON.stringify(args)) );
+  var ev = JSON.parse( encrypt(args) );
 
   var result = {};
   result['uuid'] = uuidv4();
@@ -54,7 +54,7 @@ app.post('/grant_access/:orgId/:dstId', function (req, res) {
   var dst_identity = JSON.parse( fs.readFileSync("id_" + dst_id + ".json") );
   // Creates the Transform Key, and then prepare to transform the encrypted value
   var args = [org_identity['private_key'], dst_identity['public_key_x'], dst_identity['public_key_y'], org_identity['signing_key_pair']];
-  var tk = JSON.parse( create_transform_key(JSON.stringify(args)) );
+  var tk = JSON.parse( create_transform_key(args) );
 
   // Store the transform key
   fs.writeFileSync("tk_" + org_id + "_" + dst_id + ".json", JSON.stringify(tk));
@@ -89,11 +89,11 @@ app.post('/get_sym_key/:dstId/:orgId/:symKeyId', function (req, res) {
   var tk = JSON.parse( fs.readFileSync("tk_" + org_id + "_" + dst_id + ".json") );
   
   var args = [ev, tk, org_identity['signing_key_pair']];
-  var tv = JSON.parse( transform(JSON.stringify(args)) );
+  var tv = JSON.parse( transform(args) );
   
   // Decrypt the Transformed Value into plain text secret, and then get the sym key from it
   var args = [tv, dst_identity['private_key']];
-  var pt = JSON.parse( decrypt(JSON.stringify(args)) );
+  var pt = JSON.parse( decrypt(args) );
   var sk = get_symmetric_key(Uint8Array.from(pt));
 
   // return value
