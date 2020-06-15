@@ -12,6 +12,8 @@ This is a [Mozilla Open Labs project](https://builders.mozilla.community/springl
 
 For example, in the age of COVID-19, there is great need for people to share their medical records remotely. Cryptographic Orthogonal Access Control empowers people to share with confidence that their privacy will be protected. While there are central services and repositories to faciliate sharing, it is mathematically impossible for those services to violate your privacy. As a user, you alone decides who and when sees your data.
 
+Read more about this [scalable privacy computing service](https://hackernoon.com/second-state-releases-scalable-privacy-service-at-mozilla-open-labs-b15u3wh7).
+
 ## Requirements
 
 1 All parties, including individuals, doctors, hospitals, employers etc., can create public identities on the service.
