@@ -6,31 +6,15 @@
     </a>
 </p>
 
-This is a [Mozilla Open Labs project](https://builders.mozilla.community/springlab/index.html).
+This is a [Mozilla Open Labs project](https://builders.mozilla.community/springlab/index.html). You can use this software to set up an online service that manages user identity and access authorization for a variety of applications in a manner that protects privacy. The example we gave here is privacy-first file sharing.
 
-[Cryptographic Orthogonal Access Control](https://dl.acm.org/doi/10.1145/3201595.3201602) is a scalable approach for individuals to control who can access their data *without* shared secrets or storing secrets (e.g., private keys) on a centralized service. Applications like Dropbox and Google Drive have shown that centralized repositories and permission management systems could dramatically improve the user experience for file sharing. Yet, storing plain text documents and/or encryption keys on those centralized services have profound privacy implications.
+## Background
 
-For example, in the age of COVID-19, there is great need for people to share their medical records remotely. Cryptographic Orthogonal Access Control empowers people to share with confidence that their privacy will be protected. While there are central services and repositories to faciliate sharing, it is mathematically impossible for those services to violate your privacy. As a user, you alone decides who and when sees your data.
+The Public Key Infrastructure (PKI), invented over 40 years ago, has been the bed rock for security and privacy on the Internet. While PKI algorithms are behind the most internet security protocols, such as HTTPS and TLS, the idea for individuals to use public keys to exchange data, (eg, PGP), was not adopted in large scale. Traditional PKI is not scalable. It is a `O(n*m)` complexity problem for an individual to encrypt and send each of her files (`n`) using the public key from each of the recipients (`m`).
 
-Read more about this [scalable privacy computing service](https://hackernoon.com/second-state-releases-scalable-privacy-service-at-mozilla-open-labs-b15u3wh7).
+Centralized file sharing services, such as Dropbox, reduced the problem complexity to `O(n+m)` as the individual only needs to upload each file once and to manage her contacts list one person at a time. The centralized model has proven scalable but also brings significant privacy implications. The service at the center “sees” all data and can be hacked even if they do not do evil themselves.
 
-## Requirements
-
-1 All parties, including individuals, doctors, hospitals, employers etc., can create public identities on the service.
-
-2 An individual, Alice, can grant access to her data to a list of other identities in the service. Let's say that Bob is granted access.
-
-3 Alice can now publish encrypted data files. She can upload the encrypted files to any public service.
-
-4 Only the identities that are granted access in #2 (e.g., Bob) can generate decryption keys to decrypt and read those files.
-
-5 Alice can grant access to more identities, say Charlie, at any time. Charlie, like Bob, will have access to all encrypted files from Alice.
-
-6 Alice can revoke access to any identity. Let's say Bob's access s revoked. Bob will not be able to generate decryption keys for any Alice's files.
-
-> It is still possible for Bob to retain some decryption keys before his access was revoked. It is best for Alice to use a new encryption key for each file.
-
-> Traditional PKI requires Alice to create a different key for each person on her access list. It is a huge amount of work for Alice if she has a million files and a million people on the list. The proxy re-encryption scheme only requires Alice to encrypt and upload her data files once. Bob and Charlie can create their own decryption keys as long as their access is not revoked.
+In recent years, the proxy re-encryption scheme has emerged as a way to reduce the complexity of privacy-first file sharing to `O(n+m)`. The idea, known as [Cryptographic Orthogonal Access Control](https://dl.acm.org/doi/10.1145/3201595.3201602), is for the individual to encrypt each file once and store the encrypted data on a server. Then, only approved recipients have the ability to download and decrypt the data. A recipient can be added to or removed from the access list at any time.
 
 ## Use case scenario
 
